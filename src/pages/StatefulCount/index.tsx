@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { Button, WhiteSpace } from 'antd-mobile';
-import icon from '@assets/images/react.png';
 import './index.module.less';
 
 const initialState = { clicksCount: 0 };
@@ -12,7 +11,6 @@ type Props = {
   count: number;
   dispatch: (object: Object) => Object;
 };
-
 
 class World extends React.Component<Props, State> {
   readonly state: State = initialState;
@@ -24,13 +22,16 @@ class World extends React.Component<Props, State> {
       <div styleName="normal">
         <h1>Count:{count}</h1>
         <div>
-          <Button type="primary" onClick={this.handleIncrement.bind(this, dispatch)}>Add</Button>
+          <Button type="primary" onClick={this.handleIncrement.bind(this, dispatch)}>
+            Add
+          </Button>
           <WhiteSpace />
-          <Button type="primary" onClick={this.handleDecrement.bind(this, dispatch)}>Minus</Button>
+          <Button type="primary" onClick={this.handleDecrement.bind(this, dispatch)}>
+            Minus
+          </Button>
         </div>
         <Link to="/count">Count</Link>
         <div>{`You've clicked me ${clicksCount} times!`}</div>
-        <img src={icon} />
       </div>
     );
   }
