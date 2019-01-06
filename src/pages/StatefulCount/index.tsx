@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { Button, WhiteSpace } from 'antd-mobile';
-import icon from '@assets/images/react.png';
 import style from './index.module.less';
 
 const initialState = { clicksCount: 0 };
@@ -33,7 +32,6 @@ class World extends React.Component<Props, State> {
         </div>
         <Link to="/count">Count</Link>
         <div>{`You've clicked me ${clicksCount} times!`}</div>
-        <img src={icon} />
       </div>
     );
   }
