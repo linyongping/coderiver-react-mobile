@@ -1,5 +1,6 @@
 import dva from 'dva';
 import createHistory from 'history/createBrowserHistory';
+import './style.css';
 
 const app = dva({
   history: createHistory(),
