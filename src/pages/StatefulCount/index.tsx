@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'dva/router';
 import { connect } from 'dva';
 import { Button, WhiteSpace } from 'antd-mobile';
