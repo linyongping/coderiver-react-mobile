@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Route, Router, Switch } from 'dva/router';
-import Count from '@pages/Count';
 import Welcome from '@pages/Welcome';
-import StatefulCount from '@pages/StatefulCount';
 import { History } from 'history';
+import { Register } from '@pages/Register';
 
 export default ({ history }: { history: History }) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" component={Welcome} />
-        {/* <Route path="/" component={StatefulCount} /> */}
+        <Route exact path="/" component={Welcome} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Register} />
       </Switch>
     </Router>
   );

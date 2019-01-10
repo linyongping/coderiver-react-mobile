@@ -3,10 +3,17 @@ import logoUrl from '../../assets/images/logo图案.png';
 import logoUrl2 from '../../assets/images/logo.png';
 import styles from './index.module.less';
 import { Button } from 'antd-mobile';
+import { History } from 'history';
+import { Link } from 'dva/router';
 
-export interface IAppProps {}
+export interface IWelcomeProps {
+  history: History;
+}
 
-export default class Welcome extends React.Component<IAppProps, any> {
+export default class Welcome extends React.Component<IWelcomeProps, any> {
+  constructor(props) {
+    super(props);
+  }
   private renderInitPage() {
     return (
       <div className={styles.logo}>
@@ -23,15 +30,19 @@ export default class Welcome extends React.Component<IAppProps, any> {
     return (
       <div className={styles.sign}>
         <div>
-          <a href="">登录</a>
+          <Link to="/login">登录</Link>
         </div>
         <div>
           <img src={logoUrl2} alt="" />
         </div>
         <h1>欢迎来到CodeRiver</h1>
         <div className={styles.btns}>
-          <Button>使用Github账号登录</Button>
-          <Button>创建账号</Button>
+          <Button>
+            <Link to="/login">使用Github账号登录</Link>
+          </Button>
+          <Button>
+            <Link to="/register">创建账号</Link>
+          </Button>
         </div>
         <h4>更多登陆方式</h4>
         <div>
