@@ -29,8 +29,14 @@ export default class Welcome extends React.Component<IAppProps, any> {
           <img src={logoUrl2} alt="" />
         </div>
         <h1>欢迎来到CodeRiver</h1>
+        <div className={styles.btns}>
+          <Button>使用Github账号登录</Button>
+          <Button>创建账号</Button>
+        </div>
+        <h4>更多登陆方式</h4>
         <div>
-          <Button type="primary">primary</Button>
+          <a>新浪微博</a>
+          <a>微信</a>
         </div>
       </div>
     );
