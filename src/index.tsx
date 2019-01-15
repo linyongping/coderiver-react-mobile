@@ -4,6 +4,11 @@ import './style.css';
 
 const app = dva({
   history: createHistory(),
+  onHmr: () => {
+    if (module.hot) {
+      module.hot.accept();
+    }
+  },
 });
 
 import router from './router';
