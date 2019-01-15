@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Switch, Route, Router, Link } from 'dva/router';
-import { List, InputItem, Button, Icon } from 'antd-mobile';
+import { List, InputItem, Button, Icon, Picker } from 'antd-mobile';
 import { History } from 'history';
 import styles from './index.module.less';
 import { fixIndex } from 'Util/utils';
+import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 
 enum ERegisterMethod {
   Email = 'email',
@@ -116,12 +117,43 @@ const InputPassWord = () => (
   </RegisterItem>
 );
 
-const InputRole = () => (
-  <RegisterItem title="您的角色?">
-    <h6>选择角色</h6>
-    <input />
-  </RegisterItem>
-);
+const InputRole = () => {
+  const data: PickerData[] = [
+    {
+      label: '产品经理',
+      value: 0,
+    },
+    {
+      label: '前端工程师',
+      value: 1,
+    },
+    {
+      label: 'Java工程师',
+      value: 2,
+    },
+    {
+      label: '运营',
+      value: 3,
+    },
+    {
+      label: '设计师',
+      value: 4,
+    },
+    {
+      label: '移动开发',
+      value: 5,
+    },
+  ];
+
+  return (
+    <RegisterItem title="您的角色?">
+      <h6>选择角色</h6>
+      <Picker data={data}>
+        <List.Item arrow="horizontal" />
+      </Picker>
+    </RegisterItem>
+  );
+};
 
 const InputExperience = () => (
   <RegisterItem title="您的工作经验?">

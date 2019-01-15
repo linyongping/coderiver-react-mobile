@@ -127,9 +127,7 @@ module.exports = argv => ({
     host:"0.0.0.0",
     inline: true,
     disableHostCheck: true,
-    historyApiFallback: {
-      disableDotRule: true,
-    },
+    historyApiFallback:true,
     stats: 'minimal',
     clientLogLevel: 'warning',
   },
