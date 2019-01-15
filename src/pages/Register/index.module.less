@@ -1,0 +1,47 @@
+.register{
+  position: relative;
+  h1{
+    font-weight: lighter;
+    color: #fff;
+    margin-bottom: 1.12rem;
+  }
+  h6{
+    margin: 0;
+  }
+  input{
+    display: block;
+    width: 100%;
+    height: 0.57rem;
+    font-size: 0.36rem;
+    background: transparent;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #a1d0df;
+    text-decoration: none;
+    color: #a1d0df;
+  }
+  &>div:last-child{
+    width: calc(~"100% - 50px");
+    position: absolute;
+    bottom: 0.33rem;
+    .right{
+      display: inline-flex;
+      background: #fff;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50% 50%;
+      float: right;
+    }
+    .left{
+      width: 1.5rem;
+      height: 0.38rem;
+      line-height: 0.37rem;
+      background: transparent;
+      float: left;
+      margin-top: 0.065rem;
+      border-radius: 0.19rem;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+  }
+}

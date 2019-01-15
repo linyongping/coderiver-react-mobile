@@ -124,6 +124,7 @@ module.exports = argv => ({
   devServer: {
     contentBase: SRC,
     hot: true,
+    host:"0.0.0.0",
     inline: true,
     disableHostCheck: true,
     historyApiFallback: {

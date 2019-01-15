@@ -14,21 +14,9 @@ export default class Welcome extends React.Component<IWelcomeProps, any> {
   constructor(props) {
     super(props);
   }
-  private renderInitPage() {
-    return (
-      <div className={styles.logo}>
-        <div>
-          <img src={logoUrl} alt="logo" />
-        </div>
-        <div className={styles.co}>
-          <span>CodrRiver©2018</span>
-        </div>
-      </div>
-    );
-  }
   public render() {
     return (
-      <div className={styles.sign}>
+      <div className={styles.sign + ' bg'}>
         <div>
           <Link to="/login">登录</Link>
         </div>
@@ -37,12 +25,8 @@ export default class Welcome extends React.Component<IWelcomeProps, any> {
         </div>
         <h1>欢迎来到CodeRiver</h1>
         <div className={styles.btns}>
-          <Button>
-            <Link to="/login">使用Github账号登录</Link>
-          </Button>
-          <Button>
-            <Link to="/register">创建账号</Link>
-          </Button>
+          <Link to="/login">使用Github账号登录</Link>
+          <Link to="/register">创建账号</Link>
         </div>
         <h4>更多登陆方式</h4>
         <div>
