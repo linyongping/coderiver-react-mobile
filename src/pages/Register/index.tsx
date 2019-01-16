@@ -3,8 +3,9 @@ import { Switch, Route, Router, Link } from 'dva/router';
 import { List, InputItem, Button, Icon, Picker } from 'antd-mobile';
 import { History } from 'history';
 import styles from './index.module.less';
-import { fixIndex } from 'Util/utils';
+import { arrayLast } from 'Util/utils';
 import { PickerData } from 'antd-mobile/lib/picker/PropsType';
+import { useState } from 'react';
 
 enum ERegisterMethod {
   Email = 'email',
@@ -23,14 +24,24 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
   private routeUrls = ['email', 'role', 'pwd', 'exp'];
   constructor(props) {
     super(props);
+
+    //当前进入的路由url
+    let currentRoute = arrayLast(this.props.history.location.pathname.split('/'));
+    let currentIndex = this.routeUrls.indexOf(currentRoute);
+
     this.state = {
-      currentIndex: 0,
+      currentIndex: currentIndex + 1,
       method: ERegisterMethod.Email,
     };
   }
   private go = () => {
-    let currentUrl = '/register/' + this.routeUrls[this.state.currentIndex];
-    this.setState({ currentIndex: this.state.currentIndex + 1 });
+    let currentUrl: string;
+    if (this.state.currentIndex === this.routeUrls.length) {
+      currentUrl = '/login';
+    } else {
+      currentUrl = '/register/' + this.routeUrls[this.state.currentIndex];
+      this.setState({ currentIndex: this.state.currentIndex + 1 });
+    }
     this.props.history.push(currentUrl);
   };
   private goBack = () => {
@@ -62,10 +73,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
               {this.state.method === ERegisterMethod.Email ? '使用手机号注册' : '使用邮箱注册'}
             </Button>
           )}
-
-          {this.state.currentIndex < this.routeUrls.length && (
-            <Button className={styles.right} icon="right" onClick={this.go} />
-          )}
+          <Button className={styles.right} icon="right" onClick={this.go} />
         </div>
       </div>
     );
@@ -117,6 +125,25 @@ const InputPassWord = () => (
   </RegisterItem>
 );
 
+interface IPickerProps {
+  data: PickerData[];
+  title: string;
+  head: string;
+}
+
+const PickerComponent = (props: IPickerProps) => {
+  const [val, setVal] = useState(props.data[0].label);
+
+  return (
+    <RegisterItem title={props.title}>
+      <h6>{props.head}</h6>
+      <Picker data={props.data} cols={1} onOk={val => setVal(props.data[val].label as string)}>
+        <span className={styles.val}>{val}</span>
+      </Picker>
+    </RegisterItem>
+  );
+};
+
 const InputRole = () => {
   const data: PickerData[] = [
     {
@@ -145,19 +172,33 @@ const InputRole = () => {
     },
   ];
 
-  return (
-    <RegisterItem title="您的角色?">
-      <h6>选择角色</h6>
-      <Picker data={data}>
-        <List.Item arrow="horizontal" />
-      </Picker>
-    </RegisterItem>
-  );
+  const [role, setRole] = useState('设计师');
+
+  return <PickerComponent title="您的角色?" head="选择角色" data={data} />;
 };
 
-const InputExperience = () => (
-  <RegisterItem title="您的工作经验?">
-    <h6>工作经验</h6>
-    <input />
-  </RegisterItem>
-);
+const InputExperience = () => {
+  const data: PickerData[] = [
+    {
+      label: '无经验',
+      value: 0,
+    },
+    {
+      label: '0-3年',
+      value: 1,
+    },
+    {
+      label: '3-5年',
+      value: 2,
+    },
+    {
+      label: '5-10年',
+      value: 3,
+    },
+    {
+      label: '10年以上',
+      value: 4,
+    },
+  ];
+  return <PickerComponent title="您的工作经验?" head="工作经验" data={data} />;
+};
